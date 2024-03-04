@@ -4,7 +4,7 @@ from django.db import models
 
 
 class User(AbstractUser):
-    pass
+    date_of_birth = models.DateField(null=True, blank=True)
 
 
 class Bank(models.Model):
