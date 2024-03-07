@@ -16,15 +16,11 @@ class RegistrationForm(forms.Form):
         self.helper = FormHelper(self)
         self.helper.form_id = "registration-form"
         self.helper.attrs = {
-            "hx-post": reverse_lazy("index"),
+            "hx-post": reverse_lazy("login"),
             "hx-target": "#registration-form",
             "hx-swap": "outerHTML",
         }
         self.helper.add_input(Submit("submit", "Submit"))
 
-    username = forms.CharField(
-        widget=forms.TextInput(
-            attrs={"hx-get": reverse_lazy("index"), "hx-trigger": "keyup"}
-        )
-    )
+    username = forms.CharField(widget=forms.TextInput())
     password = forms.CharField(widget=forms.PasswordInput())

@@ -24,10 +24,15 @@ def money_login(request):
                 username=form.cleaned_data["username"],
                 password=form.cleaned_data["password"],
             )
-            if user is not None:
+            if user is not None and user.is_active:
                 template = render(request, 'web/index.html')
                 template['Hx-Push'] = '/'
                 login(request, user)
+                # return render(request, "web/index.html")
+                return template
+            else:
+                context = {"form": RegistrationForm()}
+                template = render(request, 'registration/login.html', context)
                 # return render(request, "web/index.html")
                 return template
 
@@ -37,7 +42,7 @@ def money_login(request):
         return HttpResponse(form_html)
 
 
-# @login_required
+@login_required(redirect_field_name=None)
 def index(request):
     """index"""
     context = {}

@@ -8,10 +8,11 @@
         <title>Django Primers</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}">
+        <script src="{% static 'web/js/htmx.min.js' %}"></script>
         <script src="{% static 'web/js/bootstrap.min.js' %}"></script>
     </head>
     <body>
-        <div class="container mt-4">
+        <div class="container-fluid mt-4">
             {% block content %}{% endblock content %}
         </div>
     </body>
