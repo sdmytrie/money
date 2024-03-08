@@ -1,0 +1,35 @@
+:root {
+    --main-bg-color: #2e86c1;
+    --sub-bg-color: #aed6f1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.header {
+    background-color: var(--sub-bg-color);
+    margin: 0.6rem;
+    border-radius: 10px;
+    height: 2rem;
+}
+
+.sidebar {
+    background-color: var(--sub-bg-color);
+    margin: 0.6rem 0.3rem 0.6rem 0.6rem;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.content {
+    background-color: var(--sub-bg-color);
+    margin: 0.6rem 0.6rem 0.6rem 0.3rem;
+    border-radius: 10px;
+}
+
+body {
+    font-family: "Roboto-Regular", sans-serif;
+    background-color: var(--main-bg-color);
+    /* margin: 0;
+    padding: 0; */
+}
