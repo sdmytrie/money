@@ -1,12 +1,14 @@
 """Forms"""
 
-from datetime import datetime
+from pprint import pprint
 
 from crispy_forms.helper import FormHelper
+from crispy_forms.layout import *
+from crispy_forms.bootstrap import *
 from crispy_forms.layout import Submit
 from django import forms
 from django.contrib.auth import authenticate
-
+from web.models import Bank
 
 
 class RegistrationForm(forms.Form):
@@ -16,7 +18,7 @@ class RegistrationForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.form_id = "registration-form"
-        self.helper.form_method = 'post'
+        self.helper.form_method = "post"
         self.helper.add_input(Submit("submit", "Sign In"))
 
     username = forms.CharField(widget=forms.TextInput(), required=True)
@@ -37,3 +39,32 @@ class RegistrationForm(forms.Form):
         password = self.cleaned_data.get("password")
         user = authenticate(username=username, password=password)
         return user
+
+
+class BankForm(forms.ModelForm):
+    """Bank"""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_show_labels = False
+        self.helper.form_id = "bank-form"
+        self.helper.form_method = "post"
+        self.helper.layout = Layout(
+            Div(
+                Div(
+                    "name",
+                    css_class="col-8",
+                ),
+                Div(
+                    Submit("submit", "ADD"),
+                    css_class="col align-self-top",
+                ),
+                css_class="row",
+            ),
+        )
+
+    class Meta:
+        model = Bank
+        fields = ("name",)
+        widgets = {"name": forms.TextInput()}

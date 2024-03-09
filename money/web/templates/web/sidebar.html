@@ -1,0 +1,9 @@
+{% load crispy_forms_tags %}
+Sidebar {{ user }}
+<div class="sidebar-section">
+    <div class="d-flex justify-content-between">
+        <p class="text-light">Banques</p>
+        <p class="badge bg-success">+</p>
+    </div>
+    {% crispy form %}
+</div>

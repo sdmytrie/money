@@ -4,9 +4,9 @@ from pprint import pprint
 
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
-from web.forms import RegistrationForm
+from web.forms import BankForm, RegistrationForm
+from web.models import Bank
 
 
 def money_login(request):
@@ -23,5 +23,5 @@ def money_login(request):
 @login_required(redirect_field_name=None)
 def index(request):
     """index"""
-    context = {}
+    context = {"form": BankForm()}
     return render(request, "web/index.html", context)

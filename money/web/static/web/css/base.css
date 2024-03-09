@@ -1,30 +1,43 @@
 :root {
     --main-bg-color: #2e86c1;
     --sub-bg-color: #aed6f1;
+    --main-border-radius: 10px;
 }
 
 * {
     box-sizing: border-box;
 }
 
+.login {
+    background-color: var(--sub-bg-color);
+    border-radius: var(--main-border-radius);
+    padding: 0.6rem;
+}
+
 .header {
     background-color: var(--sub-bg-color);
     margin: 0.6rem;
-    border-radius: 10px;
+    border-radius: var(--main-border-radius);
     height: 2rem;
 }
 
 .sidebar {
     background-color: var(--sub-bg-color);
     margin: 0.6rem 0.3rem 0.6rem 0.6rem;
-    border-radius: 10px;
+    border-radius: var(--main-border-radius);
     height: 100%;
+}
+
+.sidebar-section {
+    background-color: var(--main-bg-color);
+    border-radius: var(--main-border-radius);
+    padding: 0.3rem;
 }
 
 .content {
     background-color: var(--sub-bg-color);
     margin: 0.6rem 0.6rem 0.6rem 0.3rem;
-    border-radius: 10px;
+    border-radius: var(--main-border-radius);
 }
 
 body {

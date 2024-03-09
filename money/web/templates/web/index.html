@@ -4,12 +4,17 @@
         <div class="header">
             <span class="m-2 align-text-top">{{ user }}</span>
         </div>
+        {% if user.is_staff %}
+            <div class="header">
+                <a class="m-2 align-text-top" href="/admin">Administration</a>
+            </div>
+        {% endif %}
         <div class="header">
             <a class="m-2 align-text-top" href="{% url 'logout' %}">sign out</a>
         </div>
     </div>
     <div class="row" style="height: 90vh;">
-        <div class="col-2 h-100 sidebar">Sidebar {{ user }}</div>
+        <div class="col-2 h-100 sidebar">{% include "web/sidebar.html" %}</div>
         <div class="col h-100 content">content {{ user }}</div>
     </div>
 {% endblock content %}
