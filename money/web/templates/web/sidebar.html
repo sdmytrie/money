@@ -1,9 +1,25 @@
 {% load crispy_forms_tags %}
 Sidebar {{ user }}
-<div class="sidebar-section">
+<div class="sidebar-section" id="banks">
     <div class="d-flex justify-content-between">
         <p class="text-light">Banques</p>
-        <p class="badge bg-success">+</p>
+        <button class="btn btn-success btn-sm align-self-center"
+                onclick="document.querySelector('#bank-form div').classList.remove('d-none'); this.setAttribute('disabled', '')">
+            +
+        </button>
     </div>
+    <ul class="list-group" id="list_banks">
+        {% for bank in banks %}
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                    <p>{{ bank.name }}</p>
+                    <p class="badge bg-success align-self-center">+</p>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">Test</li>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
     {% crispy form %}
 </div>

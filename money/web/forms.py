@@ -2,12 +2,13 @@
 
 from pprint import pprint
 
+from crispy_forms.bootstrap import *
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import *
-from crispy_forms.bootstrap import *
 from crispy_forms.layout import Submit
 from django import forms
 from django.contrib.auth import authenticate
+from django.urls import reverse_lazy
 from web.models import Bank
 
 
@@ -49,7 +50,11 @@ class BankForm(forms.ModelForm):
         self.helper = FormHelper(self)
         self.helper.form_show_labels = False
         self.helper.form_id = "bank-form"
-        self.helper.form_method = "post"
+        # self.helper.form_method = "post"
+        self.helper.attrs = {
+            "hx-post": reverse_lazy("create-banks"),
+            "hx-target": "#sidebar"
+        }
         self.helper.layout = Layout(
             Div(
                 Div(
@@ -60,7 +65,7 @@ class BankForm(forms.ModelForm):
                     Submit("submit", "ADD"),
                     css_class="col align-self-top",
                 ),
-                css_class="row",
+                css_class="row mt-2 d-none",
             ),
         )
 
