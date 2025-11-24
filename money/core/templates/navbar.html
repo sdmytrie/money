@@ -1,0 +1,30 @@
+<nav class="navbar bg-base-100 rounded-lg mb-2 shadow-lg min-h-0 h-8">
+  <div>
+    <a href="{% url 'index' %}"
+      class="btn btn-ghost text-xl px-4 py-1">
+        Money
+    </a>
+  </div>
+  <div class="flex-1">
+    <a href="{% url 'bank_account_list' %}" 
+      class="text-gray-800 hover:bg-gray-100 px-4 py-1 rounded-md">
+      Comptes bancaires
+    </a>
+  </div>
+  <div class="flex-none">
+    {% if user.is_authenticated %}
+        <!-- User is authenticated: Show Logout button -->
+        {{ user.first_name }} {{ user.last_name }}
+        <a href="{% url 'account_logout' %}" 
+          class="text-gray-800 hover:bg-gray-100 px-4 py-1 rounded-md">
+          Logout
+        </a>
+    {% else %}
+        <!-- User is not authenticated: Show Login and Register links -->
+        <a href="{% url 'account_login' %}" 
+          class="text-gray-800 hover:bg-gray-100 px-4 py-1 rounded-md">
+          Login
+        </a>
+    {% endif %}
+  </div>
+</nav>

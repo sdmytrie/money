@@ -1,0 +1,19 @@
+services:
+  money:
+    build: .
+    user: "1000:1001"
+    volumes:
+      - /home/sdmytrie/Projects/Money/money/money:/app
+    ports:
+      - 8002:8000
+    command: python3 /app/manage.py runserver 0.0.0.0:8000
+    # command: python3 -m daphne money.asgi:application
+    # command: /app/entrypoint.sh
+    networks:
+      - ffhm-network
+
+networks:
+  ffhm-network:
+    external: true
+    driver: bridge
+    name: ffhm-network

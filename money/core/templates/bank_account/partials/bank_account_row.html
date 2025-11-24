@@ -1,0 +1,28 @@
+<tr>
+    <td>
+        <a class="text-blue-500 hover:text-blue-700 hover:underline cursor-pointer"
+        hx-get="% url 'book-detail' book.pk %}"
+        hx-target="#container"
+        hx-push-url="true">{{ bank_account.name }}</a>
+    </td>
+    <td>{{ bank_account.balance }} €</td>
+    <td>
+        <button class="btn btn-sm btn-error"
+            hx-delete="% url 'bank_account_delete' bank_account.pk %}"
+            hx-trigger='confirmed'
+            onClick="Swal.fire({
+                title: 'Confirm',
+                text: 'Are you sure you want to delete {{ bank_account.name }}?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, destroy it!',
+                showCloseButton: true,
+            }).then((result)=>{
+                if(result.isConfirmed){
+                  htmx.trigger(this, 'confirmed');  
+                } 
+            })">
+          Delete
+        </button>
+    </td>
+</tr>
