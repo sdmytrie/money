@@ -1,19 +1,19 @@
+import os
 from pathlib import Path
 
+import environ
+
+from money.env import BASE_DIR, env
+from money.settings import *
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+SECRET_KEY = env("SECRET_KEY")
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+DEBUG = env.bool("DJANGO_DEBUG", default=True)
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-wieptd1tg0^_yp_%dz6=jf-cq1$l_1)sdjs8vbb@#&s8wz73h1"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "django_extensions",
     "django_htmx",
@@ -41,6 +42,7 @@ ACCOUNT_ADAPTER = "money.account_adapter.NoNewUsersAccountAdapter"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -57,7 +59,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            BASE_DIR / "core" / "templates",
+            os.path.join(BASE_DIR, "../core", "templates"),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -69,6 +71,7 @@ TEMPLATES = [
         },
     },
 ]
+print(os.path.join(BASE_DIR, "../core", "templates"))
 
 WSGI_APPLICATION = "money.wsgi.application"
 
@@ -78,12 +81,12 @@ WSGI_APPLICATION = "money.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "money",
-        "USER": "root",
-        "PASSWORD": "_Azerty1",
-        "HOST": "db",
-        "PORT": "3306",
+        "ENGINE": env("DJANGO_DATABASES_DEFAULT_ENGINE"),
+        "NAME": env("DJANGO_DATABASES_DEFAULT_NAME"),
+        "USER": env("DJANGO_DATABASES_DEFAULT_USER"),
+        "PASSWORD": env("DJANGO_DATABASES_DEFAULT_PASSWORD"),
+        "HOST": env("DJANGO_DATABASES_DEFAULT_HOST"),
+        "PORT": env("DJANGO_DATABASES_DEFAULT_PORT"),
     },
 }
 
@@ -119,14 +122,10 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-
 STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "../core", "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 ASGI_APPLICATION = "money.asgi.application"

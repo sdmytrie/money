@@ -1,0 +1,24 @@
+<table class="table mt-8" id="book-table">
+    <thead>
+        <tr>
+            <th>NOM</th>
+            <th>SOLDE</th>
+        </tr>
+    </thead>
+    <tbody hx-on::after-settle="
+        this.firstChild.style.background = 'lightgreen';
+        setTimeout(() => this.firstChild.style.background = 'white', 2000);
+        clearForm();
+        ">
+
+        {% for bank_account in bank_account_list %}
+            {% include 'bank_account/partials/bank_account_tiny_row.html' %}
+        {% empty %}
+          <tr class="empty-message">
+              <td>Pas de compte bancaire.</td>
+          </tr>
+        {% endfor %}                
+        
+    </tbody>
+
+</table>
