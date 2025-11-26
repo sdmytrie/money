@@ -1,9 +1,8 @@
 <tr>
     <td>
-        <a class="text-blue-500 hover:text-blue-700 hover:underline cursor-pointer"
-        hx-get="% url 'book-detail' book.pk %}"
-        hx-target="#container"
-        hx-push-url="true">{{ bank_account.name }}</a>
+      <a href="{% url 'operation_list' bank_account.pk %}">
+        {{ bank_account.name }}
+      </a>
     </td>
     <td>{{ bank_account.balance }} €</td>
 </tr>

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="flex justify-center items-center" id="container">
+  <div class="w-full grid grid-cols-4 gap-4">
+    <div class="p-2 bg-white col-span-4 lg:col-span-3 order-2 lg:order-1 rounded-lg">
+      <h1 class="text-4xl">{{ bank_account.name }}</h1>
+        <label class="input">
+          <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke-width="2.5"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <input 
+              type="search" 
+              required 
+              placeholder="Search" 
+              name="search"
+              hx-get="% url 'operation_search' %}"
+              hx-trigger="keyup delay:500ms"
+              hx-target="#book-table" />
+        </label>
+        {% include 'operation/partials/operation_table.html' %}
+    </div>
+    <div class="p-2 bg-white col-span-4 lg:col-span-1 order-1 lg:order-2 rounded-lg">
+      <h1 class="text-4xl mb-4">Ajouter une opération</h1>
+        {% include 'operation/partials/operation_form.html' %}
+    </div>
+  </div>
+</div>
+{% endblock %}

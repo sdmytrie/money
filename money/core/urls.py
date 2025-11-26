@@ -13,4 +13,9 @@ urlpatterns = [
         views.bank_account.bank_account_list,
         name="bank_account_list",
     ),
+    path(
+        "operation/list/<int:bank_account_id>",
+        views.operation.operation_list,
+        name="operation_list",
+    ),
 ]

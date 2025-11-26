@@ -1,0 +1,47 @@
+<tr>
+    <td class="m-0 p-1 w-1 border-r border-gray-300" nowrap>
+        {{ operation.date|date:"Y-m-d" }}
+    </td>
+    <td class="m-0 p-1 border-r border-gray-300">
+        {{ operation.third }}
+    </td>
+    <td class="m-0 p-1 w-1 text-right border-r border-gray-300" nowrap>
+        {% if operation.value > 0 %}
+          {{ operation.value }} €
+        {% endif %}
+    </td>
+    <td class="m-0 p-1 w-1 text-right text-red-600 border-r border-gray-300" nowrap>
+        {% if operation.value <= 0 %}
+          {{ operation.value }} €
+        {% endif %}
+    </td>
+    <td class="m-0 p-1 w-1 text-right text-green-600 border-r border-gray-300" nowrap>
+        {% if operation.value > 0 %}
+          {{ operation.balance }} €
+        {% endif %}
+    </td>
+    <td class="m-0 p-1 w-1 text-right text-red-600 border-r border-gray-300" nowrap>
+        {% if operation.value <= 0 %}
+          {{ operation.balance }} €
+        {% endif %}
+    </td>
+    <td class="m-0 p-1 w-1 text-center border-r border-gray-300" nowrap>
+        <button class="btn btn-sm btn-error"
+            hx-delete="% url 'bank_account_delete' bank_account.pk %}"
+            hx-trigger='confirmed'
+            onClick="Swal.fire({
+                title: 'Confirm',
+                text: 'Are you sure you want to delete {{ bank_account.name }}?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, destroy it!',
+                showCloseButton: true,
+            }).then((result)=>{
+                if(result.isConfirmed){
+                  htmx.trigger(this, 'confirmed');  
+                } 
+            })">
+          Delete
+        </button>
+    </td>
+</tr>

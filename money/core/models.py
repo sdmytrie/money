@@ -69,7 +69,7 @@ class Category(Post):
 
     name = models.CharField(max_length=255)
     parent = models.ForeignKey(
-        "self", on_delete=models.CASCADE, null=True, related_name="children"
+        "self", on_delete=models.CASCADE, blank=True, null=True, related_name="children"
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Utilisateur")
 
@@ -96,7 +96,7 @@ class Operation(Post):
     date = models.DateField()
     value = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=255, default="S")
-    comment = models.CharField(max_length=255, null=True)
+    comment = models.CharField(max_length=255, blank=True, null=True)
     periodicity = models.IntegerField(default=0)
     third = models.ForeignKey(Third, on_delete=models.CASCADE, null=True)
     balance = models.FloatField(default=0)

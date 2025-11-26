@@ -71,7 +71,6 @@ TEMPLATES = [
         },
     },
 ]
-print(os.path.join(BASE_DIR, "../core", "templates"))
 
 WSGI_APPLICATION = "money.wsgi.application"
 

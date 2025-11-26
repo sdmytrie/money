@@ -1,0 +1,27 @@
+<table class="table table-zebra mt-8 border-separate border-spacing-1 border border-gray-300" id="operation-table">
+    <thead>
+        <tr class="bg-blue-200 text-black">
+            <th>DATE</th>
+            <th>TIER</th>
+            <th class="text-center" colspan="2">MONTANT</th>
+            <th class="text-center" colspan="2">SOLDE</th>
+            <th>ACTIONS</th>
+        </tr>
+    </thead>
+    <tbody hx-on::after-settle="
+        this.firstChild.style.background = 'lightgreen';
+        setTimeout(() => this.firstChild.style.background = 'white', 2000);
+        clearForm();
+        ">
+
+        {% for operation in operation_list %}
+            {% include 'operation/partials/operation_row.html' %}
+        {% empty %}
+          <tr class="empty-message">
+              <td>Pas d'opération.</td>
+          </tr>
+        {% endfor %}                
+        
+    </tbody>
+
+</table>
