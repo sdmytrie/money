@@ -5,6 +5,9 @@
     <td class="m-0 p-1 border-r border-gray-300">
         {{ operation.third }}
     </td>
+    <td class="m-0 p-1 border-r border-gray-300">
+        {{ operation.category }}
+    </td>
     <td class="m-0 p-1 w-1 text-right border-r border-gray-300" nowrap>
         {% if operation.value > 0 %}
           {{ operation.value }} €
@@ -27,11 +30,13 @@
     </td>
     <td class="m-0 p-1 w-1 text-center border-r border-gray-300" nowrap>
         <button class="btn btn-sm btn-error"
-            hx-delete="% url 'bank_account_delete' bank_account.pk %}"
+            hx-delete="{% url 'operation_delete' operation.pk %}"
+            hx-target="#bank-account-operations"
+            hx-select="#bank-account-operations"
             hx-trigger='confirmed'
             onClick="Swal.fire({
                 title: 'Confirm',
-                text: 'Are you sure you want to delete {{ bank_account.name }}?',
+                text: 'Are you sure you want to delete this operation?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes, destroy it!',

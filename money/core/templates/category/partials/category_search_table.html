@@ -1,0 +1,28 @@
+<div class="p-0">
+  <div id="category-list" 
+      class="text-left border border-blue-300 rounded-lg text-lg" 
+      style="background-color: white;">
+    {% for category in category_list %} 
+      <p class="text-lg w-48 pl-4">
+        <a href="javascript:"
+          onclick="document.getElementById('id_category').value='{{ category.name }}'; 
+                   document.getElementById('category-search-table').style.display='none';
+                   document.getElementById('category-search-table').innerHTML=''">
+          {{ category.name }}
+        </a>
+      </p>
+    {% empty %} 
+      <div class="flex inline-block align-middle">
+        <p class="inline-block align-middle text-lg w-48 pl-4"> Aucune catégorie </p>
+        <p class="btn border border-blue-300 text-green-800"
+          hx-post="{% url 'category_add' motif %}"
+          hx-trigger="click"
+          hx-on:click="category=document.getElementById('id_category').value.toUpperCase(); 
+                     document.getElementById('id_category').value=category;
+                     document.getElementById('category-search-table').style.display='none';
+                     document.getElementById('category-search-table').innerHTML=''"
+          hx-target="#id_category">+ ajouter<p>
+      </div>
+    {% endfor %}
+  </div>
+</div>

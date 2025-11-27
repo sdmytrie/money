@@ -1,0 +1,28 @@
+<div class="p-0">
+  <div id="third-list" 
+      class="text-left border border-blue-300 rounded-lg text-lg" 
+      style="background-color: white;">
+    {% for third in third_list %} 
+      <p class="text-lg w-48 pl-4">
+        <a href="javascript:"
+          onclick="document.getElementById('id_third').value='{{ third.name }}'; 
+                   document.getElementById('third-search-table').style.display='none';
+                   document.getElementById('third-search-table').innerHTML=''">
+          {{ third.name }}
+        </a>
+      </p>
+    {% empty %} 
+      <div class="flex inline-block align-middle">
+        <p class="inline-block align-middle text-lg w-48 pl-4"> Aucun tier </p>
+        <p class="btn border border-blue-300 text-green-800"
+          hx-post="{% url 'third_add' motif %}"
+          hx-trigger="click"
+          hx-on:click="third=document.getElementById('id_third').value.toUpperCase(); 
+                     document.getElementById('id_third').value=third;
+                     document.getElementById('third-search-table').style.display='none';
+                     document.getElementById('third-search-table').innerHTML=''"
+          hx-target="#id_third">+ ajouter<p>
+      </div>
+    {% endfor %}
+  </div>
+</div>

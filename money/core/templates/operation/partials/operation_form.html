@@ -1,8 +1,7 @@
 <form id="operation-form" 
-    hx-post="{% url 'operation_list' '1' %}"
-    hx-target="#operation-table > tbody"
-    hx-swap="afterbegin"
-    hx-on::after-request="this.reset()">
+      method="POST"
+      action="{% url 'operation_list' bank_account.pk %}"
+      class="text-center">
 
     {% csrf_token %}
 
@@ -24,11 +23,52 @@
     </fieldset>
 
     <fieldset class="fieldset">
-        <label class="label text-lg" for="{{ form.tier.id_for_label }}">{{ form.tier.label }}</label>
-        {{ form.tier }}
+        <label class="label text-lg" for="{{ form.third.id_for_label }}">{{ form.third.label }}</label>
+        {{ form.third }}
+        <div class="form-field-errors">
+            {% if form.third.errors %}
+                {% for error in form.tier.errors %}
+                    <p class="text-red-500">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+          <div style="z-index: 1000; overflow-y: auto;position: absolute;" id="third-search-table"></div>
+        </div>
     </fieldset>
 
-    <button class="btn btn-success mt-4">Submit</button>
+    <fieldset class="fieldset">
+        <label class="label text-lg" for="{{ form.category.id_for_label }}">{{ form.category.label }}</label>
+        {{ form.category }}
+        <div class="form-field-errors">
+            {% if form.category.errors %}
+                {% for error in form.category.errors %}
+                    <p class="text-red-500">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+          <div style="z-index: 1000; overflow-y: auto;position: absolute;" id="category-search-table"></div>
+        </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+        <label class="label text-lg" for="{{ form.value.id_for_label }}">{{ form.value.label }}</label>
+        {{ form.value }}
+        <div class="form-field-errors">
+            {% if form.value.errors %}
+                {% for error in form.value.errors %}
+                    <p class="text-red-500">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+        <label class="label text-lg" for="{{ form.periodicity.id_for_label }}">{{ form.periodicity.label }}</label>
+        {{ form.periodicity }}
+    </fieldset>
+
+    <button type="submit" class="btn btn-success mt-4">Submit</button>
 
 </form>
-
