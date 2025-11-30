@@ -6,6 +6,7 @@
         hx-push-url="true">{{ bank_account.name }}</a>
     </td>
     <td>{{ bank_account.balance }} €</td>
+    <td>{{ bank_account.balance_prev }} €</td>
     <td>
         <button class="btn btn-sm btn-error"
             hx-delete="% url 'bank_account_delete' bank_account.pk %}"

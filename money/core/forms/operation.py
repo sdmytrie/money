@@ -79,9 +79,13 @@ class OperationForm(forms.Form):
         return category_object[0]
 
     periodicity = forms.CharField(
-        max_length=128,
+        max_length=10,
         widget=forms.TextInput(
-            attrs={"class": "required input input-primary", "autocomplete": "off"}
+            attrs={
+                "class": "required input input-primary w-10 input-sm",
+                "autocomplete": "off",
+                ":value": "counter",
+            }
         ),
         label="Fréquence",
         initial=0,

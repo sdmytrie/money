@@ -1,0 +1,7 @@
+<h1 class="text-4xl mb-4">Ajouter une catégorie</h1>
+<form id="category-form" 
+      method="POST"
+      action="{% url 'category_list' %}"
+      class="text-center">
+      {% include 'category/partials/category_form.html' %}
+</form>

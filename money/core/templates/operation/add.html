@@ -1,0 +1,7 @@
+<h1 class="text-4xl mb-4">Ajouter une opération</h1>
+<form id="operation-form" 
+      method="POST"
+      action="{% url 'operation_list' bank_account.pk 'S' %}"
+      class="text-center">
+      {% include 'operation/partials/operation_form.html' %}
+</form>

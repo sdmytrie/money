@@ -1,0 +1,7 @@
+<h1 class="text-4xl mb-4">Modifier un tier</h1>
+<form id="third-edit-form" 
+      method="POST"
+      action="{% url 'third_edit' third.pk %}"
+      class="text-center">
+      {% include 'third/partials/third_form.html' %}
+</form>

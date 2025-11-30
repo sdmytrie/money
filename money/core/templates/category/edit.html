@@ -1,0 +1,7 @@
+<h1 class="text-4xl mb-4">Modifier une catégorie</h1>
+<form id="category-edit-form" 
+      method="POST"
+      action="{% url 'category_edit' category.pk %}"
+      class="text-center">
+      {% include 'category/partials/category_form.html' %}
+</form>

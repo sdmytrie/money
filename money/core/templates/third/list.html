@@ -3,8 +3,8 @@
 {% block content %}
 <div class="flex justify-center items-center" id="container">
   <div class="w-full lg:w-3/4 grid grid-cols-4 gap-4">
-    <div class="p-2 bg-white col-span-4 lg:col-span-3 order-2 lg:order-1 rounded-lg" id="bank-account-list">
-        <h1 class="text-4xl">Comptes bancaires</h1>
+    <div class="p-2 bg-white col-span-4 lg:col-span-3 order-2 lg:order-1 rounded-lg" id="third-list">
+        <h1 class="text-4xl">Tiers</h1>
         <label class="input">
           <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g
@@ -27,14 +27,15 @@
               hx-trigger="keyup delay:500ms"
               hx-target="#book-table" />
         </label>
-        {% include 'bank_account/partials/bank_account_tiny_table.html' %}
+        {% include 'third/partials/third_table.html' %}
     </div>
-    <div id="bank-account-action" class="p-2 bg-white col-span-4 lg:col-span-1 order-1 lg:order-2 rounded-lg">
+    <div id="third-action" class="p-2 bg-white col-span-4 lg:col-span-1 order-1 lg:order-2 rounded-lg">
       {% if action == "ADD"  %}
-        {% include 'bank_account/add.html' %}
+        {% include 'third/add.html' %}
       {% elif action == "EDIT" %}
-        {% include 'bank_account/edit.html' %}
+        {% include 'third/edit.html' %}
       {% endif %}
+    </div>
   </div>
 </div>
 {% endblock %}

@@ -1,33 +1,25 @@
 <tr>
     <td>
-      <a href="{% url 'operation_list' bank_account.pk 'S' %}">
-        {{ bank_account.name }}
-      </a>
-    </td>
-    <td class="{% if bank_account.balance_prev < 0 %}text-red-600{% else %}text-green-600{% endif %}">
-      {{ bank_account.balance }} €
-    </td>
-    <td class="{% if bank_account.balance_prev < 0 %}text-red-600{% else %}text-green-600{% endif %}">
-      {{ bank_account.balance_prev }} €
+        {{ category.name }}
     </td>
     <td class="m-0 p-1 w-1 text-center border-r border-gray-300" nowrap>
         <button class="btn btn-sm btn-success"
-            hx-get="{% url 'bank_account_edit' bank_account.pk %}"
-            hx-target="#bank-account-action"
+            hx-get="{% url 'category_edit' category.pk %}"
+            hx-target="#category-action"
             hx-trigger='click'>
           Edit
         </button>
     </td>
     <td class="m-0 p-1 w-1 text-center border-r border-gray-300" nowrap>
-      {% if not bank_account.operations.all %}
+      {% if not category.operation_set.all %}
         <button class="btn btn-sm btn-error"
-            hx-delete="{% url 'bank_account_delete' bank_account.pk %}"
-            hx-target="#bank-account-list"
-            hx-select="#bank-account-list"
+            hx-delete="{% url 'category_delete' category.pk %}"
+            hx-target="#category_list"
+            hx-select="#category_list"
             hx-trigger='confirmed'
             onClick="Swal.fire({
                 title: 'Confirm',
-                text: 'Are you sure you want to delete {{ bank_account.name }}?',
+                text: 'Are you sure you want to delete {{ category.name }}?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes, destroy it!',

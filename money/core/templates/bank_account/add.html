@@ -1,0 +1,8 @@
+<h1 class="text-4xl mb-4">Ajouter une banque</h1>
+<form id="bank-account-form" 
+      method="POST"
+      action="{% url 'bank_account_list' %}"
+      class="text-center">
+      {% include 'bank_account/partials/bank_account_form.html' %}
+</form>
+

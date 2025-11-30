@@ -10,6 +10,14 @@
       class="text-gray-800 hover:bg-gray-100 px-4 py-1 rounded-md">
       Comptes bancaires
     </a>
+    <a href="{% url 'third_list' %}" 
+      class="text-gray-800 hover:bg-gray-100 px-4 py-1 rounded-md">
+      Tiers
+    </a>
+    <a href="{% url 'category_list' %}" 
+      class="text-gray-800 hover:bg-gray-100 px-4 py-1 rounded-md">
+      Catégories
+    </a>
   </div>
   <div class="flex-none">
     {% if user.is_authenticated %}

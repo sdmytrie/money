@@ -1,0 +1,7 @@
+<h1 class="text-4xl mb-4">Modifier une opération</h1>
+<form id="operation-edit-form" 
+      method="POST"
+      action="{% url 'operation_edit' operation.pk %}"
+      class="text-center">
+      {% include 'operation/partials/operation_form.html' %}
+</form>

@@ -1,5 +1,15 @@
 <tr>
     <td class="m-0 p-1 w-1 border-r border-gray-300" nowrap>
+      <input type="checkbox" 
+            {% if operation.checked %}checked="checked"{% endif %} 
+            class="checkbox"
+            hx-get="{% url 'operation_check' operation.pk operation.status %}"
+            hx-swap="outerHTML"
+            hx-target="#container"
+            hx-select="#container"
+            hx-trigger="click" />
+    </td>
+    <td class="m-0 p-1 w-1 border-r border-gray-300" nowrap>
         {{ operation.date|date:"Y-m-d" }}
     </td>
     <td class="m-0 p-1 border-r border-gray-300">
@@ -29,8 +39,17 @@
         {% endif %}
     </td>
     <td class="m-0 p-1 w-1 text-center border-r border-gray-300" nowrap>
+        <button class="btn btn-sm btn-success"
+            hx-get="{% url 'operation_edit' operation.pk %}"
+            hx-target="#operation-action"
+            hx-swap="innerHTML"
+            hx-trigger='click'>
+          Edit
+        </button>
+    </td>
+    <td class="m-0 p-1 w-1 text-center border-r border-gray-300" nowrap>
         <button class="btn btn-sm btn-error"
-            hx-delete="{% url 'operation_delete' operation.pk %}"
+            hx-delete="{% url 'operation_delete' operation.pk status %}"
             hx-target="#bank-account-operations"
             hx-select="#bank-account-operations"
             hx-trigger='confirmed'
@@ -48,5 +67,15 @@
             })">
           Delete
         </button>
+    </td>
+    <td class="m-0 p-1 w-1 border-r border-gray-300" nowrap>
+      {% if operation.status == "S" %}
+        <div class="badge badge-primary coursor-pointer"
+            hx-get="{% url 'operation_archive' operation.pk operation.status %}"
+            hx-swap="outerHTML"
+            hx-target="#container"
+            hx-select="#container"
+            hx-trigger="click">A</div>
+      {% endif %}
     </td>
 </tr>

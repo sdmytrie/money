@@ -1,10 +1,8 @@
-<table class="table mt-8" id="account-bank-table">
+<table class="table table-zebra mt-8 border-separate border-spacing-1 border border-gray-300" id="category-table">
     <thead>
-        <tr>
+        <tr class="bg-blue-200 text-black">
             <th>NOM</th>
-            <th>SOLDE</th>
-            <th>PREVISIONNEL</th>
-            <th>ACTIONS</th>
+            <th class="text-center" colspan="2">ACTIONS</th>
         </tr>
     </thead>
     <tbody hx-on::after-settle="
@@ -13,11 +11,11 @@
         clearForm();
         ">
 
-        {% for bank_account in bank_account_list %}
-            {% include 'bank_account/partials/bank_account_row.html' %}
+        {% for category in category_list %}
+            {% include 'category/partials/category_row.html' %}
         {% empty %}
           <tr class="empty-message">
-              <td>Pas de compte bancaire.</td>
+              <td>Pas de catégorie.</td>
           </tr>
         {% endfor %}                
         

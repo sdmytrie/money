@@ -14,14 +14,39 @@ urlpatterns = [
         name="bank_account_list",
     ),
     path(
-        "operation/list/<int:bank_account_id>",
+        "bank-account/edit/<int:bank_account_id>",
+        views.bank_account.bank_account_edit,
+        name="bank_account_edit",
+    ),
+    path(
+        "bank-account/delete/<int:bank_account_id>",
+        views.bank_account.bank_account_delete,
+        name="bank_account_delete",
+    ),
+    path(
+        "operation/list/<int:bank_account_id>/<str:status>",
         views.operation.operation_list,
         name="operation_list",
     ),
     path(
-        "operation/delete/<int:operation_id>",
+        "operation/delete/<int:operation_id>/<str:status>",
         views.operation.operation_delete,
         name="operation_delete",
+    ),
+    path(
+        "operation/edit/<int:operation_id>",
+        views.operation.operation_edit,
+        name="operation_edit",
+    ),
+    path(
+        "operation/check/<int:operation_id>/<str:status>",
+        views.operation.operation_check,
+        name="operation_check",
+    ),
+    path(
+        "operation/archive/<int:operation_id>/<str:status>",
+        views.operation.operation_archive,
+        name="operation_archive",
     ),
     path(
         "third/search",
@@ -29,14 +54,44 @@ urlpatterns = [
         name="third_get_by_name",
     ),
     path(
+        "third/list",
+        views.third.third_list,
+        name="third_list",
+    ),
+    path(
+        "third/edit/<int:third_id>",
+        views.third.third_edit,
+        name="third_edit",
+    ),
+    path(
         "third/add/<str:motif>",
         views.third.third_add,
         name="third_add",
     ),
     path(
+        "third/delete/<int:third_id>",
+        views.third.third_delete,
+        name="third_delete",
+    ),
+    path(
         "category/search",
         views.category.category_get_by_name,
         name="category_get_by_name",
+    ),
+    path(
+        "category/list",
+        views.category.category_list,
+        name="category_list",
+    ),
+    path(
+        "category/edit/<str:category_id>",
+        views.category.category_edit,
+        name="category_edit",
+    ),
+    path(
+        "category/delete/<int:category_id>",
+        views.category.category_delete,
+        name="category_delete",
     ),
     path(
         "category/add/<str:motif>",
