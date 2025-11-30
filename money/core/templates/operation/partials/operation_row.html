@@ -29,12 +29,12 @@
         {% endif %}
     </td>
     <td class="m-0 p-1 w-1 text-right text-green-600 border-r border-gray-300" nowrap>
-        {% if operation.value > 0 %}
+        {% if operation.balance > 0 %}
           {{ operation.balance }} €
         {% endif %}
     </td>
     <td class="m-0 p-1 w-1 text-right text-red-600 border-r border-gray-300" nowrap>
-        {% if operation.value <= 0 %}
+        {% if operation.balance <= 0 %}
           {{ operation.balance }} €
         {% endif %}
     </td>
