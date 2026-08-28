@@ -43,11 +43,13 @@
       {% include 'operation/partials/operation_table.html' %}
     </div>
     <div id="operation-action" class="p-2 bg-white col-span-4 lg:col-span-1 order-1 lg:order-2 rounded-lg">
-      {% if action == "ADD"  %}
-        {% include 'operation/add.html' %}
-      {% elif action == "EDIT" %}
-        {% include 'operation/edit.html' %}
-      {% endif %}
+      <div style="position: sticky; top: 20px;">
+        {% if action == "ADD"  %}
+          {% include 'operation/add.html' %}
+        {% elif action == "EDIT" %}
+          {% include 'operation/edit.html' %}
+        {% endif %}
+      </div>
     </div>
   </div>
 </div>
